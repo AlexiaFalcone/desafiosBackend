@@ -17,7 +17,7 @@ class ProductManager {
         }
         this.products.push(product)
     }
-    addProduct(product_id, new_title, new_price, new_description, new_image, new_stock) {
+    addProduct(product_id, new_title, new_description, new_price, new_image, new_stock) {
         const productFound = this.products.find((product) => product.id === product_id)
         if (productFound) {
             console.log("El producto ya se encuentra registrado.")
@@ -36,7 +36,11 @@ class ProductManager {
     }
     getProductById(product_id) {
         const singleProduct = this.products.find((product) => product.id === product_id)
-        console.log(singleProduct)
+        if(singleProduct){
+            return singleProduct
+        } else{
+            console.log("Error, el producto no exite.")
+        }
     }
 }
 
@@ -49,4 +53,10 @@ productManager.productsList("Chaleco Monet", "Composición: Lino, disponible en 
 const products = productManager.getProduct()
 console.log(products)
 
-productManager.addProduct("Pollera Camet", "Composición: Lino, disponible en 3 colores", 19500, "https://images.app.goo.gl/bEkg65gtKwUjQQeP9", 10)
+productManager.addProduct("Pollera", "Pollera tableada, disponible en 2 colores", 19200, 'https://images.app.goo.gl/QeCSiePaSDhYHvZd8', 10)
+
+const newSeason = productManager.getProduct()
+console.log(newSeason)
+
+const bringSingleProduct = productManager.getProductById(2)
+console.log(bringSingleProduct)

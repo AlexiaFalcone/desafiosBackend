@@ -14,9 +14,10 @@ class ProductManager {
                 console.log("El producto ya se encuentra registrado.")
                 return
             }
+            await fs.writeFile(this.path, JSON.stringify(productos, null, 2))
             producto.id = this.numeroId++
             this.productos.push(producto)
-            await fs.writeFile(this.path, JSON.stringify(productos, null, 2))
+            
         } catch(error){
             console.error("Error al crear el usuario", error)
         }      
@@ -44,3 +45,5 @@ class ProductManager {
 
     }
 }
+
+module.exports = ProductManager

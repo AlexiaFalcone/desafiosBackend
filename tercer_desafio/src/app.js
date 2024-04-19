@@ -11,7 +11,7 @@ app.listen(PORT, () => {
 
 const manager = new ProductManager('Productos.json')
 
-app.get('/', async (req, res) => {
+app.get('/products', async (req, res) => {
     const products = await manager.getProduct()
     let limit = parseInt(req.query.limit)
     let limitProduct = [...products]
@@ -19,9 +19,10 @@ app.get('/', async (req, res) => {
     if(!isNaN(limit) && limit > 0){
         limitProduct = limitProduct.slice(0, limit)
         res.json(limitProduct)
-    }
-    
-    res.send(products)   
+    }else{
+        res.send(products) 
+    }    
+      
 })
 
 app.get('/:pid', async (req, res) => {

@@ -3,9 +3,9 @@ const path = require('path').promises
 
 class ProductManager {
 
-    constructor() {
+    constructor(path) {
 
-        this.path = "Productos.json"
+        this.path = path
         this.productos = []
     }
     async addProduct(newProducto) {
@@ -46,7 +46,7 @@ class ProductManager {
     async getProductById(producto_id) {
         try {
             let productoPorId = await this.getProduct()
-            const productoUnico = productoPorId.find((producto) => producto_id === producto.id)
+            const productoUnico = productoPorId.find((producto) => producto_id == producto.id)
             if (!productoUnico) {
                 console.log("Error, el producto no exite.")
                 return
